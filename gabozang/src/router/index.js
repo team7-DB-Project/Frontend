@@ -1,21 +1,52 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import NotFound     from '@/components/common/NotFound.vue'
+import HomeApp from '@/App.vue'
 import MainIntroduce from '@/views/MainPage/MainIntroduce.vue'
+import StoreMainPage from '@/views/StoresPage/StoreMainPage.vue'
+import EmployeesMainPage from '@/views/EmployeesPage/EmployeesMainPage.vue'
+import ReviewMainPage from '@/views/ReviewPage/ReviewMainPage.vue'
+import CalculateMainPage from '@/views/CalculatePage/CalculateMainPage.vue'
+
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: MainIntroduce
+    name: 'Home',
+    component: HomeApp
   },   
   {
-    path: "/:catchAll(.*)",
-    component: NotFound
+    path: '/main',
+    name: 'MainIntro',
+    component: MainIntroduce
   },
   {
     path: '/posts',
     name: 'posts',
     component: () => import('@/views/PostsView.vue')
+  },
+  {
+    path: '/stores',
+    name: 'Store',
+    component: StoreMainPage
+  },
+  {
+    path: '/employees',
+    name: 'Employees',
+    component: EmployeesMainPage
+  },
+  {
+    path: '/review',
+    name: 'Review',
+    component: ReviewMainPage
+  },
+  {
+    path: '/calculate',
+    name: 'Calculate',
+    component: CalculateMainPage
+  },
+  {
+    path: '/account',
+    name: 'Account',
+    component: EmployeesMainPage
   },
   // user 경로 추가 : start
   {
@@ -63,4 +94,4 @@ const router = createRouter({
   routes
 })
 
-export default router
+export default router;

@@ -1,6 +1,7 @@
 <template>
     <DefaultHeader></DefaultHeader>
     <DefaultNav></DefaultNav>
+    
 </template>
 
 <script>
