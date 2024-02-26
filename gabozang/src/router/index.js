@@ -1,13 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView     from '@/views/HomeView.vue'
 import NotFound     from '@/components/common/NotFound.vue'
-
+import MainIntroduce from '@/views/MainPage/MainIntroduce.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: MainIntroduce
   },   
   {
     path: "/:catchAll(.*)",

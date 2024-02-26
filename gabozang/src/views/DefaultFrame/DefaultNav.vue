@@ -1,24 +1,13 @@
 <template>
     <nav id="sideNav">
         <h3>가보장<br />관리 시스템</h3>
-        <div class="menubar">
-            <a href="#" class="link-area">
-                <div class="link-content">메인</div>
-            </a>
-            <a href="#" class="link-area">
-                <div class="link-content">점포</div>
-            </a>
-            <a href="#" class="link-area">
-                <div class="link-content">직원</div>
-            </a>
-            <a href="#" class="link-area">
-                <div class="link-content">후기</div>
-            </a>
-            <a href="#" class="link-area">
-                <div class="link-content">정산</div>
-            </a>
-
-        </div>
+        <ul class="nav-container">
+            <li class="nav-item" :class="{'active': $route.name === 'Home' }"><router-link to="/">메인</router-link></li>
+            <li class="nav-item" :class="{'active': $route.name === 'Store' }"><a href="#">점포</a></li>
+            <li class="nav-item" :class="{'active': $route.name === 'Employee '}"><a href="#">직원</a></li>
+            <li class="nav-item" :class="{'active': $route.name === 'Review '}"><a href="#">후기</a></li>
+            <li class="nav-item" :class="{'active': $route.name === 'Account '}"><a href="#">정산</a></li>
+        </ul>
     </nav>
 </template>
 
@@ -42,36 +31,32 @@ nav {
 h3 {
     margin-left: 0.8em;
     margin-right: 0.8em;
-    /* border: 1px solid black; */
     font-size: 2em;
     font-weight: 600;
     padding-bottom: 2em;
 }
 
-.menubar {
+.nav-container{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    text-align: center;
-    padding-top: 1em;
-
-    /* border: 1px solid black; */
-    .link-area {
-        color: #343532;
-        font-size: 2em;
-        font-weight: 600;
-        border-radius: 0.1em;
-        background-color: rgba(255, 255, 255, 0.5);
-        /* 배경색에 투명도 적용 */
-        transition: background-color 1s;
-        /* 배경색에 대한 전환 효과 적용 */
-        margin-top: 1.5em;
-    }
-
-    .link-area:hover {
-        background-color: rgba(255, 255, 255, 0.5);
-        /* 호버 시 배경색 유지 */
-    }
 }
+.nav-item{
+    width: 100%;
+    text-align: center;
+    font-size: 1.5em;
+}
+.nav-item a{
+    display: block;
+    width: 100%;
+    color: inherit;
+    text-decoration: none;
+    background-color: transparent;
+    transition: background-color 1s ease, opacity 1s ease;
+   padding-top: 1.1em;
+   padding-bottom: 1.1em;
+}
+.nav-item a:hover{
+        background-color: rgba(238, 238, 238, 0.5);
+    }
 </style>

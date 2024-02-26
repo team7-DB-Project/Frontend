@@ -41,11 +41,11 @@ header {
         min-height: 2.5em;
         min-width: 7em;
         display: inline-block;
+        transition: background-color 1s ease, opacity 1s ease;
     }
 
     .btn:hover {
-
-        background-color: #dfb64f;
+        background-color: rgba(234, 234, 234, 0.5);
     }
 
     ul {
