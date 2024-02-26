@@ -66,7 +66,6 @@ h3 {
         /* 배경색에 투명도 적용 */
         transition: background-color 1s;
         /* 배경색에 대한 전환 효과 적용 */
-        /* border: 1px solid black; */
         margin-top: 1.5em;
     }
 
@@ -74,4 +73,5 @@ h3 {
         background-color: rgba(255, 255, 255, 0.5);
         /* 호버 시 배경색 유지 */
     }
-}</style>
+}
+</style>
