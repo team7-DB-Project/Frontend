@@ -1,13 +1,5 @@
 <template>
-    <div>DefaultArticle</div>
+    <article>
+        I am an article
+    </article>
 </template>
-
-<script>
-export default {
-    
-}
-</script>
-
-<style>
-
-</style>
