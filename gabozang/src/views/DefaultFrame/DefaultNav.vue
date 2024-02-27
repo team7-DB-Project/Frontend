@@ -21,7 +21,7 @@ export default {
 nav {
     background-color: #DFD6BF;
     height: 100%;
-    width: 20%;
+    width: 15%;
     position: fixed;
     z-index: 1;
     top: 0;
