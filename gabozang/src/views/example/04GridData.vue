@@ -68,13 +68,13 @@ export default {
 </script>
 <style>
 table {
-  border: 2px solid #42b983;
+  border: 2px solid #DFD6BF;
   border-radius: 3px;
   background-color: #fff;
 }
 
 th {
-  background-color: #42b983;
+  background-color: #DFD6BF;
   color: rgba(255, 255, 255, 0.66);
   cursor: pointer;
   user-select: none;
