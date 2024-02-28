@@ -1,6 +1,6 @@
 <template>
     <header>
-        <div id="headline">
+        <div class="headline">
             <div class="headline-menu">
                 <ul>
                     <li class="lst">이름</li>
@@ -24,10 +24,22 @@ export default {
 
 <style scoped>
 header {
-    border-bottom: 1px solid #e6e6e6;
+    position: fixed;
+    left:15.5%;
+    top:0%;
+    width: 84%;
+    height: 15%;
+    border-bottom: 1px solid #E6E6E6;
 }
-
+.headline{
+    display: flex;
+    height: 100%;
+    justify-content: right;
+    align-items: center;
+}
 .headline-menu {
+    display: flex;
+    height: 100%;
     .btn {
         font-family: 'Noto Sans KR';
         font-style: normal;
@@ -52,15 +64,11 @@ header {
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        padding-top: 1.5em;
-        padding-bottom: 1.5em;
         font-family: 'Noto Sans KR';
         font-style: normal;
         font-weight: 600;
-        border-bottom: 1px solid #E6E6E6;
         font-size: 1.4em;
         text-align: center;
-        padding: 2em;
 
         .lst {
             opacity: 0.6;

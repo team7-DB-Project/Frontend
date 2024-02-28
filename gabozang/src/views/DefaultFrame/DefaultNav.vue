@@ -2,19 +2,21 @@
     <nav id="sideNav">
         <h3>가보장<br />관리 시스템</h3>
         <ul class="nav-container">
-            <li class="nav-item" :class="{ 'active': $route.name === 'MainIntro' }"><router-link to="/main">메인</router-link></li>
-            <li class="nav-item" :class="{ 'active': $route.name === 'Store' }"><router-link to="/stores">점포</router-link></li>
+            <li class="nav-item" :class="{ 'active': $route.name === 'MainIntro' }"><router-link to="/main">메인</router-link>
+            </li>
+            <li class="nav-item" :class="{ 'active': $route.name === 'Store' }"><router-link to="/stores">점포</router-link>
+            </li>
             <li class="nav-item" :class="{ 'active': $route.name === 'Employees' }"><router-link to="/employees">직원</router-link></li>
-            <li class="nav-item" :class="{ 'active': $route.name === 'Review' }"><router-link to="/review">후기</router-link></li>
-            <li class="nav-item" :class="{ 'active': $route.name === 'Calculate' }"><router-link to="/calculate">정산</router-link></li>
+            <li class="nav-item" :class="{ 'active': $route.name === 'Review' }"><router-link to="/review">후기</router-link>
+            </li>
+            <li class="nav-item" :class="{ 'active': $route.name === 'Calculate' }"><router-link
+                    to="/calculate">정산</router-link></li>
         </ul>
     </nav>
 </template>
 
 <script>
-export default {
 
-}
 </script>
 
 <style scoped>
@@ -31,7 +33,7 @@ nav {
 h3 {
     margin-left: 0.8em;
     margin-right: 0.8em;
-    font-size: 2em;
+    font-size: 1.6em;
     font-weight: 600;
     padding-bottom: 2em;
 }

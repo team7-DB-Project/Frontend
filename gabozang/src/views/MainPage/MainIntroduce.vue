@@ -2,6 +2,7 @@
     <DefaultHeader></DefaultHeader>
     <DefaultNav></DefaultNav>
     <MainComponents></MainComponents>
+    <router-view></router-view>
 </template>
 
 <script>
@@ -10,9 +11,9 @@ import DefaultNav from '../DefaultFrame/DefaultNav.vue';
 import MainComponents from './MainComponents.vue';
 export default {
     components: {
-    DefaultNav,
-    DefaultHeader,
-    MainComponents
-}
+        DefaultNav,
+        DefaultHeader,
+        MainComponents
+    }
 }
 </script>
