@@ -1,4 +1,5 @@
-<template>
+<!--
+  <template>
   <footer>
     <div>© 2022 onda2me</div>
     <div class="footer-nav">참고주소 :: 
@@ -27,4 +28,6 @@ footer {
   color: #2c3e50;
 }
 </style>
+
+-->
 
