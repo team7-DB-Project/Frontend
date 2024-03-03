@@ -1,50 +1,82 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import NotFound     from '@/components/common/NotFound.vue'
-
+import HomeApp from '@/App.vue'
+import MainIntroduce from '@/views/MainPage/MainIntroduce.vue'
+import StoreMainPage from '@/views/StoresPage/StoreMainPage.vue'
+import EmployeesMainPage from '@/views/EmployeesPage/EmployeesMainPage.vue'
+import ReviewMainPage from '@/views/ReviewPage/ReviewMainPage.vue'
+import CalculateMainPage from '@/views/CalculatePage/CalculateMainPage.vue'
 
 const routes = [
   {
-    path: "/:catchAll(.*)",
-    component: NotFound
-  },
+    path: '/',
+    name: 'Home',
+    component: HomeApp
+  },   
   {
     path: '/main',
-    name: 'main',
-    component: () => import('@/views/mainpage/01MainPage.vue')
+    name: 'MainIntro',
+    component: MainIntroduce
   },
+  // {
+  //   path: "/:catchAll(.*)",
+  //   component: NotFound
+  // },
+  // {
+  //   path: '/main',
+  //   name: 'main',
+  //   component: () => import('@/views/mainpage/01MainPage.vue')
+  // },
   // user 경로 추가 : start
   {
-    path: '/store',
-    name: 'store',
-    component: () => import('@/views/example/02ConditionNumber.vue'), 
+    path: '/stores',
+    name: 'Store',
+    component: StoreMainPage
+    // path: '/store',
+    // name: 'store',
+    // component: () => import('@/views/example/02ConditionNumber.vue'), 
     // children: [
     //     { path: 'InputForm',        component: () => import('@/views/example/01InputForm.vue') },
     //   ]
   }, 
   {
+
     path: '/employees',
-    name: 'employee',
-    component: () => import('@/views/example/03ToggleColor.vue')
+    name: 'Employees',
+    component: EmployeesMainPage
+    // path: '/employees',
+    // name: 'employee',
+    // component: () => import('@/views/example/03ToggleColor.vue')
     // children: [
     //     { path: 'InputForm',        component: () => import('@/views/example/01InputForm.vue') },
     //   ]
   }, 
   {
     path: '/review',
-    name: 'review',
-    component: () => import('@/views/example/04SortSearch.vue')
+    name: 'Review',
+    component: ReviewMainPage
+    // path: '/review',
+    // name: 'review',
+    // component: () => import('@/views/example/04SortSearch.vue')
     // children: [
     //     { path: 'InputForm',        component: () => import('@/views/example/01InputForm.vue') },
     //   ]
   }, 
   {
     path: '/calculate',
-    name: 'calculate',
-    component: () => import('@/views/example/05CRUD.vue')
+    name: 'Calculate',
+    component: CalculateMainPage
+    // path: '/calculate',
+    // name: 'calculate',
+    // component: () => import('@/views/example/05CRUD.vue')
     // children: [
     //     { path: 'InputForm',        component: () => import('@/views/example/01InputForm.vue') },
     //   ]
   }, 
+  {
+    path: '/account',
+    name: 'Account',
+    component: EmployeesMainPage
+  },
   {
     path: '/listboard',
     name: 'listboard',
