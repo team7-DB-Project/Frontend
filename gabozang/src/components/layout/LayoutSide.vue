@@ -3,7 +3,7 @@
       <div v-for="url in urlList" :key="url.path">
         <a v-if="$route.path.toUpperCase() == url.path.toUpperCase()" v-bind:href="url.path" class="active">{{ url.name}}</a>
         <a v-if="$route.path.toUpperCase() != url.path.toUpperCase()" v-bind:href="url.path" >{{ url.name}}</a>      
-      </div>
+      </div> 
   
     </div>
     <div class="main">
