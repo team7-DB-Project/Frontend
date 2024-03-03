@@ -10,28 +10,40 @@ const routes = [
   {
     path: '/main',
     name: 'main',
-    component: () => import('@/views/example/01InputForm.vue')
+    component: () => import('@/views/mainpage/01MainPage.vue')
   },
   // user 경로 추가 : start
   {
     path: '/store',
     name: 'store',
-    component: () => import('@/views/example/02ConditionNumber.vue')
+    component: () => import('@/views/example/02ConditionNumber.vue'), 
+    // children: [
+    //     { path: 'InputForm',        component: () => import('@/views/example/01InputForm.vue') },
+    //   ]
   }, 
   {
     path: '/employees',
     name: 'employee',
     component: () => import('@/views/example/03ToggleColor.vue')
+    // children: [
+    //     { path: 'InputForm',        component: () => import('@/views/example/01InputForm.vue') },
+    //   ]
   }, 
   {
     path: '/review',
     name: 'review',
     component: () => import('@/views/example/04SortSearch.vue')
+    // children: [
+    //     { path: 'InputForm',        component: () => import('@/views/example/01InputForm.vue') },
+    //   ]
   }, 
   {
     path: '/calculate',
     name: 'calculate',
     component: () => import('@/views/example/05CRUD.vue')
+    // children: [
+    //     { path: 'InputForm',        component: () => import('@/views/example/01InputForm.vue') },
+    //   ]
   }, 
   {
     path: '/listboard',
