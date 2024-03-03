@@ -16,7 +16,7 @@ const routes = [
   {
     path: '/store',
     name: 'store',
-    component: () => import('@/views/example/02ConditionNumber.vue'), 
+    component: () => import('@/views/emppage/01EmpPage.vue'), 
     // children: [
     //     { path: 'InputForm',        component: () => import('@/views/example/01InputForm.vue') },
     //   ]
@@ -24,10 +24,16 @@ const routes = [
   {
     path: '/employees',
     name: 'employee',
-    component: () => import('@/views/example/03ToggleColor.vue')
+    component: () => import('@/views/emppage/01EmpPage.vue')
     // children: [
     //     { path: 'InputForm',        component: () => import('@/views/example/01InputForm.vue') },
     //   ]
+  }, 
+  {
+    path: '/employees/:id',
+    name: 'employeesid',
+    component: () => import('@/views/emppage/GetEmp.vue'),
+    props: true, // 이를 통해 :id 값을 컴포넌트의 props로 전달합니다.
   }, 
   {
     path: '/review',
