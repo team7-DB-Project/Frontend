@@ -10,7 +10,7 @@
       </div>
     </div>
   </header>
-  <nav> </nav>
+  <nav></nav>
 </template>
 
 <script>

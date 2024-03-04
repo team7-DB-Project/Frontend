@@ -57,9 +57,9 @@ const routes = [
     component: () => import('@/views/reviewpage/01ReviewPage.vue')
   }, 
   {
-    path: '/calculate',
-    name: 'calculate',
-    component: () => import('@/views/example/05CRUD.vue')
+    path: '/paymenthistory',
+    name: 'paymenthistory',
+    component: () => import('@/views/paymenthistory/01PaymentPage.vue')
   },
   {
     path: '/users/:id',

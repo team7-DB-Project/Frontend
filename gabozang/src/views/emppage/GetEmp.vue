@@ -81,10 +81,18 @@ export default {
             this.isEditing = true;
         }, async updateEmployee() {
             try {
-                const response = await axios.post(`http://15.164.225.110:8080/employee/${this.employeeId}`, this.employee);
-
-                // 예를 들어, 서버로부터 받은 업데이트된 직원 정보를 로컬 상태에 반영
-                this.employee = response.data;
+                // 관리자 ID가 0인지 확인
+                if (this.employee.managerId === 0) {
+                    alert('관리자 ID는 0을 넣을 수 없습니다.');
+                    // 관리자 ID를 제외한 객체 생성
+                    // eslint-disable-next-line no-unused-vars
+                    const { managerId, ...employeeDataWithoutManagerId } = this.employee;
+                    const response = await axios.post(`http://15.164.225.110:8080/employee/${this.employeeId}`, employeeDataWithoutManagerId);
+                    this.employee = response.data;
+                } else {
+                    const response = await axios.post(`http://15.164.225.110:8080/employee/${this.employeeId}`, this.employee);
+                    this.employee = response.data;
+                }
 
                 this.isEditing = false;
                 alert('직원 정보가 성공적으로 업데이트되었습니다.');

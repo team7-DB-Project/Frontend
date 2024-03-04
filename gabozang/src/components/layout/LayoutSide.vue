@@ -22,7 +22,7 @@ export default {
         { path: '/store', name: '점포' },
         { path: '/employee', name: '직원' },
         { path: '/review', name: '후기' },
-        { path: '/calculate', name: '정산' }
+        { path: '/paymenthistory', name: '정산' }
       ]
     }
   }
