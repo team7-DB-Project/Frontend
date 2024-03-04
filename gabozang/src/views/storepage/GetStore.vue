@@ -34,8 +34,9 @@
                 </div>
                 <div>
                     <label for="imageUrl">사진:</label>
-                    <input id="imageUrl" v-model="storeId.imageUrl">
+                    <input id="imageUrl" type="file" @change="handleFileUpload">
                 </div>
+
                 <div>
                     <label for="phoneNumber">전화번호:</label>
                     <input id="phoneNumber" v-model="storeId.phoneNumber">
@@ -77,7 +78,7 @@ export default {
             this.isEditing = true;
         }, async updateEmployee() {
             try {
-                const response = await axios.post(`http://15.164.225.110:8080/store/${this.Id}`, this.storeId);
+                const response = await axios.post(`http://15.164.225.110:8080/store/${this.id}`, this.storeId);
 
                 // 예를 들어, 서버로부터 받은 업데이트된 직원 정보를 로컬 상태에 반영
                 this.storeId = response.data;
