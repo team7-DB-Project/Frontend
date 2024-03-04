@@ -29,10 +29,11 @@ nav {
 }
 header {
   position: fixed;
-  top: 0%;
+  top: 8px;
   width: 100%;
   height: 15%;
   border-bottom: 1px solid #E6E6E6;
+  background-color: #FFFFFF;
 }
 
 .headline {

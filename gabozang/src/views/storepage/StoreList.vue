@@ -1,6 +1,7 @@
 <template>
     <div class="board-container">
         <h1>점포</h1>
+        <button @click="addNewStore" class="add-store-btn">새 점포 추가</button>
         <table v-if="stores.length" class="stores-table">
             <thead>
                 <tr>
@@ -79,6 +80,10 @@ export default {
         changePage(page) {
             this.currentPage = page;
         },
+        addNewStore() {
+            // 새 점포 추가 페이지로 이동
+            this.$router.push({ name: 'addstore' }); // 'StoreAdd'는 새 점포 추가 페이지의 라우터 이름
+        },
     },
 };
 </script>
@@ -135,4 +140,5 @@ export default {
 li {
     list-style-type: none;
 }
+
 </style>

@@ -88,6 +88,7 @@ export default {
 
                 this.isEditing = false;
                 alert('직원 정보가 성공적으로 업데이트되었습니다.');
+                this.$router.push({ name: 'employee' });
             } catch (error) {
                 console.error('직원 정보를 업데이트하는 동안 오류가 발생했습니다:', error);
             }

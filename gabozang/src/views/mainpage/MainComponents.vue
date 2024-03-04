@@ -50,7 +50,6 @@ export default {
 <style scoped>
 
 .outer-box {
-    position: relative;
     border-radius: 0.4em;
     background-color: #F0EAE6;
     overflow-y: scroll;

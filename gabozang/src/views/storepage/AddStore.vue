@@ -1,21 +1,8 @@
 <template>
     <div class="storeId-detail-container">
-        <h1>점포 상세 정보</h1>
+        <h1>점포 추가</h1>
         <div v-if="!isEditing">
-            <p>점포 ID: {{ storeId.id }}</p>
-            <p>이름: {{ storeId.name }}</p>
-            <p>지역: {{ storeId.location }}</p>
-            <p>최대수용: {{ storeId.maximumCapacity }}</p>
-            <p>별점: {{ storeId.rating }}</p>
-            <p>이미지: {{ storeId.imageUrl }}</p>
-            <p>전화번호: {{ storeId.phoneNumber }}</p>
-            <p>생성 날짜: {{ storeId.createdAt }}</p>
-            <p>업데이트 날짜: {{ storeId.updatedAt }}</p>
-            <!-- 기타 필요한 정보 필드 추가 -->
-            <button @click="editStore">수정</button>
-        </div>
-        <div v-else>
-            <form @submit.prevent="updateStore">
+            <form @submit.prevent="addStore">
                 <div>
                     <label for="name">이름:</label>
                     <input id="name" v-model="storeId.name">
@@ -62,21 +49,10 @@ export default {
         };
     },
     async mounted() {
-        await this.fetchStoreDetail();
+        await this.fetchEmployeeDetail();
     },
     methods: {
-        async fetchStoreDetail() {
-            try {
-                // 올바르게 변수를 포함한 템플릿 리터럴 사용
-                const response = await axios.get(`http://15.164.225.110:8080/store/${this.id}`);
-                this.storeId = response.data;
-            } catch (error) {
-                console.error('점포 정보를 불러오는 중 오류가 발생했습니다:', error);
-            }
-        },
-        editStore() {
-            this.isEditing = true;
-        }, async updateStore() {
+        async addStore() {
             try {
                 const response = await axios.post(`http://15.164.225.110:8080/store/${this.id}`, this.storeId);
 
@@ -85,15 +61,11 @@ export default {
 
                 this.isEditing = false;
                 alert('점포 정보가 성공적으로 업데이트되었습니다.');
-                this.$router.push({ name: 'store' });
             } catch (error) {
                 console.error('점포 정보를 업데이트하는 동안 오류가 발생했습니다:', error);
             }
         }
         ,
-        cancelEdit() {
-            this.isEditing = false;
-        },
     },
 };
 </script>
