@@ -45,8 +45,19 @@ export default {
             totalPages: 0,
             totalEmployeeCount: 0,
             searchQuery: '',
-            gridColumns: ['employeeId', 'name', 'phoneNumber', 'yearsOfService', 'employmentType', 'salary', 'managerId', 'createdAt', 'updatedAt', '상세 정보'],
-        };
+            gridColumns: [
+            { field: 'employeeId', label: '직원 ID' },
+            { field: 'name', label: '이름' },
+            { field: 'phoneNumber', label: '전화번호' },
+            { field: 'yearsOfService', label: '근무 연수' },
+            { field: 'employmentType', label: '고용 형태' },
+            { field: 'salary', label: '급여' },
+            { field: 'managerId', label: '관리자 ID' },
+            { field: 'createdAt', label: '생성 날짜' },
+            { field: 'updatedAt', label: '업데이트 날짜' },
+            { field: 'detail', label: '상세 정보', isLink: true }
+        ]
+    };
     },
     async mounted() {
         await this.fetchPosts();

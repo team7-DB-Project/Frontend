@@ -3,7 +3,7 @@
         <h2>이달의 우수사원</h2>
         <div class="top-employees-list" v-if="topEmployees.length > 0">
             <div v-for="(employee, index) in topEmployees" :key="employee.employeeId" :class="`employee employee-${index + 1}`">
-                {{ index + 1 }} | {{ employee.name }} - 직급: {{ employee.employmentType }}
+                {{ index + 1 }}위 | {{ employee.name }} - 직급: {{ employee.employmentType }}
             </div>
         </div>
         <div v-else>

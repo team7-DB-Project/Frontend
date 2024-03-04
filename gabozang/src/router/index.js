@@ -54,17 +54,12 @@ const routes = [
   {
     path: '/review',
     name: 'review',
-    component: () => import('@/views/example/04SortSearch.vue')
+    component: () => import('@/views/reviewpage/01ReviewPage.vue')
   }, 
   {
     path: '/calculate',
     name: 'calculate',
     component: () => import('@/views/example/05CRUD.vue')
-  }, 
-  {
-    path: '/listboard',
-    name: 'listboard',
-    component: () => import('@/views/example/06ListBoard.vue')
   },
   {
     path: '/users/:id',

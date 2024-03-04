@@ -4,10 +4,11 @@
         <table v-if="filteredData.length">
             <thead>
                 <tr>
-                    <th v-for="key in columns" :key="key" @click="sortBy(key)">
-                        {{ capitalize(key) }}
-                        <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'desc'"></span>
-                    </th>
+                    <th v-for="column in columns" :key="column.field" @click="sortBy(column.field)">
+    {{ column.label }}
+    <span class="arrow" :class="sortOrders[column.field] > 0 ? 'asc' : 'desc'"></span>
+</th>
+
 
 
                 </tr>
@@ -34,17 +35,18 @@
 export default {
     props: ['data', 'columns', 'filterKey', 'currentPage', 'pageSize'],
     data() {
-        const sortOrders = this.columns.reduce((acc, key) => {
-            acc[key] = 1;
-            return acc;
-        }, {});
+    const sortOrders = this.columns.reduce((acc, column) => {
+        acc[column.field] = 1; // `column.label` 대신 `column.field` 사용
+        return acc;
+    }, {});
 
-        return {
-            localFilterKey: this.filterKey, // props에서 받은 값을 직접 할당
-            sortKey: '',
-            sortOrders
-        };
-    },
+    return {
+        localFilterKey: this.filterKey,
+        sortKey: '',
+        sortOrders,
+    };
+},
+
     created() {
         this.localFilterKey = this.filterKey; // prop의 초기값을 로컬 데이터 속성에 할당
         this.columns.forEach(key => {
@@ -87,10 +89,11 @@ export default {
         }
     },
     methods: {
-        sortBy(key) {
-            this.sortKey = key;
-            this.sortOrders[key] = this.sortOrders[key] * -1;
-        },
+        sortBy(field) {
+    this.sortKey = field;
+    this.sortOrders[field] = this.sortOrders[field] * -1; // 현재 정렬 순서 반전
+},
+
         capitalize(str) {
             if (!str) return '';
             return str.charAt(0).toUpperCase() + str.slice(1);

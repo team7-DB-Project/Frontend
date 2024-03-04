@@ -42,7 +42,17 @@ export default {
     data() {
         return {
             searchQuery: '',
-            gridColumns: ['id', 'name', 'location', 'maximumCapacity', 'rating', 'phoneNumber', 'createdAt', 'updatedAt', '상세 정보'],
+            gridColumns: [
+                { field:'id', label: '점포 ID'},
+                { field:'name', label: '점포 이름'},
+                { field:'location', label: '지역'},
+                { field:'maximumCapacity', label: '최대 수용'},
+                { field:'rating', label: '평점'},
+                { field:'phoneNumber', label: '전화번호'},
+                { field:'createdAt', label: '생성 날짜'},
+                { field:'updatedAt', label: '수정 날짜'},
+                { field: 'detail', label: '상세 정보', isLink: true },
+            ],
             stores: [],
             currentPage: 1,
             pageSize: 10,
