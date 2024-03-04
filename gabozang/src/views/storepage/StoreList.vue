@@ -1,7 +1,11 @@
 <template>
     <div class="board-container">
         <h1>점포</h1>
+        <div class="header-container">
+        <topStore></topStore>
+        <rank-store></rank-store>
         <button @click="addNewStore" class="add-store-btn">새 점포 추가</button>
+    </div>
         <table v-if="stores.length" class="stores-table">
             <thead>
                 <tr>
@@ -45,9 +49,15 @@
 
 <script>
 import axios from 'axios';
+import topStore from './TopStore.vue';
+import RankStore from './RankStore.vue';
 
 export default {
     name: 'PostListComponent',
+    components:{
+        topStore,
+        RankStore
+    },
     data() {
         return {
             stores: [],
@@ -140,5 +150,24 @@ export default {
 li {
     list-style-type: none;
 }
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
+.add-store-btn {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #DFD6BF;
+    /* 녹색 배경 */
+    color: black;
+    /* 흰색 텍스트 */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* 부드러운 색상 변경 효과 */
+}
 </style>
