@@ -1,6 +1,8 @@
 <template>
     <div class="board-container">
         <h1>직원 목록</h1>
+        <top-employees></top-employees>
+        <button @click="addNewEmp" class="add-store-btn">새 직원 추가</button>
         <table v-if="paginatedPosts.length > 0" class="posts-table">
             <thead>
                 <tr>
@@ -46,9 +48,13 @@
 
 <script>
 import axios from 'axios';
+import topEmployees from './TopEmp.vue';
 
 export default {
     name: 'PostListComponent',
+    components: {
+        topEmployees,
+    },
     data() {
         return {
             posts: [],
@@ -56,6 +62,7 @@ export default {
             pageSize: 10,
             paginatedPosts: [],
             totalPages: 0,
+            topEmployees: [],
         };
     },
     async mounted() {
@@ -80,6 +87,10 @@ export default {
         },
         changePage(page) {
             this.currentPage = page;
+        },
+        addNewEmp() {
+            // 새 점포 추가 페이지로 이동
+            this.$router.push({ name: 'addemp' }); // 'StoreAdd'는 새 점포 추가 페이지의 라우터 이름
         },
     },
 };

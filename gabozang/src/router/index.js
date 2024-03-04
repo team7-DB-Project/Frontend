@@ -47,6 +47,11 @@ const routes = [
     props: true, // 이를 통해 :id 값을 컴포넌트의 props로 전달합니다.
   },
   {
+    path: '/employee/add',
+    name: 'addemp',
+    component: () => import('@/views/emppage/AddEmp.vue'), // 이를 통해 :id 값을 컴포넌트의 props로 전달합니다.
+  },
+  {
     path: '/review',
     name: 'review',
     component: () => import('@/views/example/04SortSearch.vue')
