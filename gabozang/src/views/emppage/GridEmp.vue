@@ -105,6 +105,7 @@ export default {
 
 <style scoped>
 table {
+    width: 100%;
     border: 2px solid #DFD6BF;
     border-radius: 3px;
     background-color: #fff;
