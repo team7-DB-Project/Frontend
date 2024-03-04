@@ -1,16 +1,17 @@
 <template>
     <div class="top-employees-container">
         <h2>이달의 우수사원</h2>
-        <ul v-if="topEmployees.length > 0">
-            <li v-for="(employee, index) in topEmployees" :key="index">
-                {{ index + 1 }}. {{ employee.name }} - 직급: {{ employee.employmentType }}
-            </li>
-        </ul>
+        <div class="top-employees-list" v-if="topEmployees.length > 0">
+            <div v-for="(employee, index) in topEmployees" :key="employee.employeeId" :class="`employee employee-${index + 1}`">
+                {{ index + 1 }} | {{ employee.name }} - 직급: {{ employee.employmentType }}
+            </div>
+        </div>
         <div v-else>
             우수사원 정보가 없습니다.
         </div>
     </div>
 </template>
+
 
 <script>
 import axios from 'axios';
@@ -41,23 +42,30 @@ export default {
 
 <style>
 .top-employees-container {
-    margin-top: 20px;
     padding: 10px;
     background-color: #f9f9f9;
-    border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.top-employees-container h2 {
-    margin-top: 0;
+.top-employees-list {
+    display: flex; /* 우수 직원들 사이에 공간을 동일하게 배분 */
 }
 
-.top-employees-container ul {
-    padding: 0;
+.employee {
+    margin: 5px;
+    padding: 10px;
 }
 
-.top-employees-container li {
-    list-style-type: none;
-    margin-bottom: 5px;
+.employee-1 {
+    font-size: 1.4rem; /* 1등은 가장 큰 글씨 */
 }
+
+.employee-2 {
+    font-size: 1.1rem; /* 2등은 중간 글씨 */
+}
+
+.employee-3 {
+    font-size: 1rem; /* 3등은 가장 작은 글씨 */
+}
+
 </style>

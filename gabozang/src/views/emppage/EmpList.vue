@@ -1,8 +1,11 @@
 <template>
     <div class="board-container">
-        <h1>직원 목록</h1>
-        <top-employees></top-employees>
-        <button @click="addNewEmp" class="add-store-btn">새 직원 추가</button>
+        <h1>직원 목록 </h1>
+        <div class="header-container">
+            <top-employees></top-employees>
+            총 직원 수: {{ totalEmployeeCount }}
+            <button @click="addNewEmp" class="add-employee-btn">새 직원 추가</button>
+        </div>
         <table v-if="paginatedPosts.length > 0" class="posts-table">
             <thead>
                 <tr>
@@ -63,10 +66,12 @@ export default {
             paginatedPosts: [],
             totalPages: 0,
             topEmployees: [],
+            totalEmployeeCount: 0, // 총 직원 수를 저장할 속성
         };
     },
     async mounted() {
         await this.fetchPosts();
+        await this.fetchEmployeeCount(); // 총 직원 수 정보 가져오기
     },
     methods: {
         async fetchPosts() {
@@ -92,6 +97,15 @@ export default {
             // 새 점포 추가 페이지로 이동
             this.$router.push({ name: 'addemp' }); // 'StoreAdd'는 새 점포 추가 페이지의 라우터 이름
         },
+        async fetchEmployeeCount() {
+            try {
+                const response = await axios.get('http://15.164.225.110:8080/employee/count');
+                // API 응답 구조에 따라 적절한 데이터 접근 방식 적용
+                this.totalEmployeeCount = response.data; // API 응답이 직접 총 직원 수를 반환한다고 가정
+            } catch (error) {
+                console.error('총 직원 수 정보를 불러오는 중 오류가 발생했습니다:', error);
+            }
+        },
     },
 };
 </script>
@@ -100,7 +114,7 @@ export default {
 .board-container {
     max-width: 85%;
     margin: auto;
-    padding: 5%;
+    padding: 2%;
     background-color: #f5f5f5;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -145,7 +159,34 @@ export default {
     background-color: #eaeaea;
     cursor: not-allowed;
 }
-li{
-  list-style-type: none;
+
+li {
+    list-style-type: none;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.add-employee-btn {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #DFD6BF;
+    /* 녹색 배경 */
+    color: black;
+    /* 흰색 텍스트 */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* 부드러운 색상 변경 효과 */
+}
+
+.add-employee-btn:hover {
+    background-color: #E3E3E3;
+    /* Darken primary color on hover */
 }
 </style>
