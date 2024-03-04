@@ -3,41 +3,18 @@
         <h1>직원 목록 </h1>
         <div class="header-container">
             <top-employees></top-employees>
-            총 직원 수: {{ totalEmployeeCount }}
+            <h2>총 직원 수: {{ totalEmployeeCount }}</h2>
             <button @click="addNewEmp" class="add-employee-btn">새 직원 추가</button>
         </div>
-        <table v-if="paginatedPosts.length > 0" class="posts-table">
-            <thead>
-                <tr>
-                    <th>직원 ID</th>
-                    <th>이름</th>
-                    <th>전화번호</th>
-                    <th>근무 연수</th>
-                    <th>고용 형태</th>
-                    <th>급여</th>
-                    <th>관리자 ID</th>
-                    <th>생성 날짜</th>
-                    <th>업데이트 날짜</th>
-                    <th>상세 정보</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="post in paginatedPosts[currentPage - 1]" :key="post.employeeId">
-                    <td>{{ post.employeeId }}</td>
-                    <td>{{ post.name }}</td>
-                    <td>{{ post.phoneNumber }}</td>
-                    <td>{{ post.yearsOfService }}</td>
-                    <td>{{ post.employmentType }}</td>
-                    <td>{{ post.salary }}</td>
-                    <td>{{ post.managerId }}</td>
-                    <td>{{ post.createdAt }}</td>
-                    <td>{{ post.updatedAt }}</td>
-                    <td><router-link :to="`/employee/${post.employeeId}`">정보 보기</router-link></td>
-                </tr>
-            </tbody>
-        </table>
-        <div v-else>
-            게시글이 없습니다.
+        <div>
+            <!-- GridEmp 컴포넌트 사용 -->
+            <grid-emp
+                :data="posts"
+                :columns="gridColumns"
+                :filter-key="searchQuery"
+                :current-page="currentPage"
+                :page-size="pageSize"
+            ></grid-emp>
         </div>
         <nav aria-label="Page navigation example">
             <ul class="pagination">
@@ -52,56 +29,49 @@
 <script>
 import axios from 'axios';
 import topEmployees from './TopEmp.vue';
+import GridEmp from './GridEmp.vue';
 
 export default {
     name: 'PostListComponent',
     components: {
         topEmployees,
+        GridEmp,
     },
     data() {
         return {
             posts: [],
             currentPage: 1,
             pageSize: 10,
-            paginatedPosts: [],
             totalPages: 0,
-            topEmployees: [],
-            totalEmployeeCount: 0, // 총 직원 수를 저장할 속성
+            totalEmployeeCount: 0,
+            searchQuery: '',
+            gridColumns: ['employeeId', 'name', 'phoneNumber', 'yearsOfService', 'employmentType', 'salary', 'managerId', 'createdAt', 'updatedAt', '상세 정보'],
         };
     },
     async mounted() {
         await this.fetchPosts();
-        await this.fetchEmployeeCount(); // 총 직원 수 정보 가져오기
+        await this.fetchEmployeeCount();
     },
     methods: {
         async fetchPosts() {
             try {
                 const response = await axios.get('http://15.164.225.110:8080/employee');
                 this.posts = response.data;
-                this.paginatePosts();
+                this.totalPages = Math.ceil(this.posts.length / this.pageSize);
             } catch (error) {
                 console.error('Error fetching posts:', error);
             }
-        },
-        paginatePosts() {
-            this.totalPages = Math.ceil(this.posts.length / this.pageSize);
-            this.paginatedPosts = Array.from({ length: this.totalPages }, (_, index) => {
-                const start = index * this.pageSize;
-                return this.posts.slice(start, start + this.pageSize);
-            });
         },
         changePage(page) {
             this.currentPage = page;
         },
         addNewEmp() {
-            // 새 점포 추가 페이지로 이동
-            this.$router.push({ name: 'addemp' }); // 'StoreAdd'는 새 점포 추가 페이지의 라우터 이름
+            this.$router.push({ name: 'addemp' });
         },
         async fetchEmployeeCount() {
             try {
                 const response = await axios.get('http://15.164.225.110:8080/employee/count');
-                // API 응답 구조에 따라 적절한 데이터 접근 방식 적용
-                this.totalEmployeeCount = response.data; // API 응답이 직접 총 직원 수를 반환한다고 가정
+                this.totalEmployeeCount = response.data;
             } catch (error) {
                 console.error('총 직원 수 정보를 불러오는 중 오류가 발생했습니다:', error);
             }

@@ -65,7 +65,10 @@ export default {
                 console.error('점포 정보를 업데이트하는 동안 오류가 발생했습니다:', error);
             }
         }
-        ,
+        ,cancelEdit() {
+            this.isEditing = false;
+            this.$router.push({ name: 'store' });
+        },
     },
 };
 </script>

@@ -2,40 +2,19 @@
     <div class="board-container">
         <h1>점포</h1>
         <div class="header-container">
-        <topStore></topStore>
-        <rank-store></rank-store>
-        <button @click="addNewStore" class="add-store-btn">새 점포 추가</button>
-    </div>
-        <table v-if="stores.length" class="stores-table">
-            <thead>
-                <tr>
-                    <th>점포 ID</th>
-                    <th>이름</th>
-                    <th>점포 위치</th>
-                    <th>최대수용</th>
-                    <th>별점</th>
-                    <th>전화번호</th>
-                    <th>생성 날짜</th>
-                    <th>업데이트 날짜</th>
-                    <th>상세 정보</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(store, index) in stores" :key="index">
-                    <td>{{ store.id }}</td>
-                    <td>{{ store.name }}</td>
-                    <td>{{ store.location }}</td>
-                    <td>{{ store.maximumCapacity }}</td>
-                    <td>{{ store.rating }}</td>
-                    <td>{{ store.phoneNumber }}</td>
-                    <td>{{ store.createdAt }}</td>
-                    <td>{{ store.updatedAt }}</td>
-                    <td><a :href="'/store/' + store.id">정보 보기</a></td>
-                </tr>
-            </tbody>
-        </table>
-        <div v-else>
-            게시글이 없습니다
+            <top-store></top-store>
+            <rank-store></rank-store>
+            <button @click="addNewStore" class="add-store-btn">새 점포 추가</button>
+        </div>
+        <div>
+            <!-- GridStore 컴포넌트 사용 -->
+            <grid-store
+                :data="stores"
+                :columns="gridColumns"
+                :filter-key="searchQuery"
+                :current-page="currentPage"
+                :page-size="pageSize"
+            ></grid-store>
         </div>
         <nav aria-label="Page navigation example">
             <ul class="pagination">
@@ -49,50 +28,45 @@
 
 <script>
 import axios from 'axios';
-import topStore from './TopStore.vue';
+import TopStore from './TopStore.vue';
 import RankStore from './RankStore.vue';
+import GridStore from './GridStore.vue';
 
 export default {
     name: 'PostListComponent',
-    components:{
-        topStore,
-        RankStore
+    components: {
+        TopStore,
+        RankStore,
+        GridStore,
     },
     data() {
         return {
+            searchQuery: '',
+            gridColumns: ['id', 'name', 'location', 'maximumCapacity', 'rating', 'phoneNumber', 'createdAt', 'updatedAt', '상세 정보'],
             stores: [],
             currentPage: 1,
             pageSize: 10,
-            paginatedPosts: [],
             totalPages: 0,
         };
     },
     async mounted() {
-        await this.fetchPosts();
+        await this.fetchStores();
     },
     methods: {
-        async fetchPosts() {
+        async fetchStores() {
             try {
                 const response = await axios.get('http://15.164.225.110:8080/store');
                 this.stores = response.data;
-                this.paginatePosts();
+                this.totalPages = Math.ceil(this.stores.length / this.pageSize);
             } catch (error) {
-                console.error('Error fetching posts:', error);
+                console.error('Error fetching stores:', error);
             }
-        },
-        paginatePosts() {
-            this.totalPages = Math.ceil(this.posts.length / this.pageSize);
-            this.paginatedPosts = Array.from({ length: this.totalPages }, (_, index) => {
-                const start = index * this.pageSize;
-                return this.posts.slice(start, start + this.pageSize);
-            });
         },
         changePage(page) {
             this.currentPage = page;
         },
         addNewStore() {
-            // 새 점포 추가 페이지로 이동
-            this.$router.push({ name: 'addstore' }); // 'StoreAdd'는 새 점포 추가 페이지의 라우터 이름
+            this.$router.push({ name: 'addstore' });
         },
     },
 };
@@ -102,7 +76,7 @@ export default {
 .board-container {
     max-width: 85%;
     margin: auto;
-    padding: 5%;
+    padding: 2%;
     background-color: #f5f5f5;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -169,5 +143,10 @@ li {
     cursor: pointer;
     transition: background-color 0.3s ease;
     /* 부드러운 색상 변경 효과 */
+}
+
+.add-store-btn:hover {
+    background-color: #E3E3E3;
+    /* Darken primary color on hover */
 }
 </style>

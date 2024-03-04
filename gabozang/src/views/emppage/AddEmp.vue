@@ -74,6 +74,7 @@ export default {
         ,
         cancelEdit() {
             this.isEditing = false;
+            this.$router.push({ name: 'employee' });
         },
     },
 };
