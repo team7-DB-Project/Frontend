@@ -6,8 +6,9 @@
             <p>이름: {{ storeId.name }}</p>
             <p>지역: {{ storeId.location }}</p>
             <p>최대수용: {{ storeId.maximumCapacity }}</p>
-            <p>별점: {{ storeId.rating }}</p>
-            <p>이미지: {{ storeId.imageUrl }}</p>
+            <p>별점: {{ storeId.rating }}</p><p v-if="storeId.imageUrl">
+    <img :src="storeId.imageUrl" alt="점포 이미지" style="max-width: 100%; height: auto;">
+</p>
             <p>전화번호: {{ storeId.phoneNumber }}</p>
             <p>생성 날짜: {{ storeId.createdAt }}</p>
             <p>업데이트 날짜: {{ storeId.updatedAt }}</p>
