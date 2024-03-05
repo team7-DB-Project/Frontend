@@ -108,7 +108,7 @@ export default {
 }
 
 .rating {
-    background: #DFD6BF;
+    background: #CFBDAE;
     color: #fff;
     padding: 3px 8px;
     border-radius: 5px;

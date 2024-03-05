@@ -32,7 +32,7 @@ export default {
           labels.push(`${rating}점`);
           const count = countsByRating.find(item => item.rating === rating)?.count || 0;
           data.push(count);
-          backgroundColors.push('#a99f86'); // 수정된 부분
+          backgroundColors.push('#CFBDAE'); // 수정된 부분
           borderColors.push('#DFD6BF'); // 수정된 부분
         }
 

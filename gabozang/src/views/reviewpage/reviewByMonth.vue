@@ -91,7 +91,7 @@ export default {
 
 .search-box button {
   padding: 8px 16px;
-  background-color: #a99f86;
+  background-color: #CFBDAE;
   border: none;
   color: white;
   cursor: pointer;
