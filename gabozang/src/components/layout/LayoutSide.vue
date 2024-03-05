@@ -30,6 +30,15 @@ export default {
 </script>
 
 <style>
+h3{
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 15%;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: large;
+}
 .sidebar {
   margin: 0;
   padding: 0;
