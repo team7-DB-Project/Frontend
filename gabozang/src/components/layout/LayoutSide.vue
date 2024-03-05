@@ -67,7 +67,7 @@ h3{
 }
 
 .sidebar a:hover:not(.active) {
-  background-color: #555;
+  background-color: #555555;
   color: white;
 }
 

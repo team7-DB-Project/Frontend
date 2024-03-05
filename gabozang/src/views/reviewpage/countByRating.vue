@@ -1,71 +1,84 @@
 <template>
-  <div class="review-summary">
-    <h2>리뷰 점수 분포</h2>
-    <div class="summary-container">
-      <!-- 별점 수준에 따라 정확한 별 개수를 반복해서 표시 -->
-      <div v-for="count in countsByRating" :key="count.rating" class="rating-summary">
-        <div class="rating-stars">
-          <!-- 정확한 별 개수에 따라 별 표시 -->
-          <span v-for="star in count.rating" :key="star" class="rating">★</span>
-        </div>
-        <span class="rating-count">{{ count.count }} 개</span>
-      </div>
-    </div>
+  <div class="review-chart">
+    <canvas id="reviewChart"></canvas>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
 
 export default {
   data() {
     return {
-      countsByRating: [],
+      chart: null,
     };
   },
-  async created() {
-    try {
-      const response = await axios.get('http://15.164.225.110:8080/review/countByRating');
-      this.countsByRating = response.data;
-    } catch (error) {
-      console.error('리뷰 점수 분포 데이터를 가져오는 중 에러가 발생했습니다.', error);
-    }
+  mounted() {
+    this.fetchChartData();
   },
+  methods: {
+    async fetchChartData() {
+      try {
+        const response = await axios.get('http://15.164.225.110:8080/review/countByRating');
+        const countsByRating = response.data;
+        const labels = [];
+        const data = [];
+        const backgroundColors = [];
+        const borderColors = [];
+
+        for (let rating = 0; rating <= 5; rating++) {
+          labels.push(`${rating}점`);
+          const count = countsByRating.find(item => item.rating === rating)?.count || 0;
+          data.push(count);
+          backgroundColors.push('#a99f86'); // 수정된 부분
+          borderColors.push('#DFD6BF'); // 수정된 부분
+        }
+
+        this.renderChart(labels, data, backgroundColors, borderColors);
+      } catch (error) {
+        console.error('리뷰 점수 분포 데이터를 가져오는 중 에러가 발생했습니다.', error);
+      }
+    },
+    renderChart(labels, data, backgroundColors, borderColors) {
+      const ctx = document.getElementById('reviewChart').getContext('2d');
+      if (this.chart) {
+        this.chart.destroy();
+      }
+      this.chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: '리뷰 개수',
+            data: data,
+            backgroundColor: backgroundColors,
+            borderColor: borderColors,
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          },
+          plugins: {
+            legend: {
+              display: false // 수정된 부분
+            }
+          }
+        }
+      });
+    }
+  }
 }
 </script>
 
 <style scoped>
-.review-summary {
-  max-width: 800px;
+.review-chart {
+  max-width: 600px;
   margin: auto;
-  padding: 20px;
-}
-
-.summary-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.rating-summary {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-  padding: 10px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.rating-stars .rating {
-  background: #DFD6BF;
-  color: #fff;
-  padding: 3px 8px;
-  border-radius: 5px;
-  font-weight: bold;
-  margin-right: 4px; /* 별 사이의 간격 조정 */
-}
-
-.rating-count {
-  margin-left: auto;
 }
 </style>
