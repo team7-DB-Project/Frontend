@@ -8,7 +8,7 @@
       <!-- 기능 버튼들 -->
       <div class="feature-buttons">
         <button v-for="url in urlList" :key="url.path" @click="navigate(url.path)" class="feature-button">
-          <i class="fas fa-star"></i> {{ url.name }}
+          <i class="fas fa-star"></i> {{ url.koname }}
         </button>
       </div>
       <!-- 리뷰 정보 출력 구역 -->
@@ -24,13 +24,14 @@ export default {
   data() {
     return {
       urlList: [
-        { path: '/review/getreview', name: 'getreview' },
-        { path: '/review/getsinglervid', name: 'getsinglervid' },
-        { path: '/review/getsinglervst', name: 'getsinglervst' },
-        { path: '/review/reviewbymonth', name: 'reviewbymonth' },
-        { path: '/review/reviewbydate', name: 'reviewbydate' },
-        { path: '/review/rating', name: 'rating' },
-        { path: '/review/countbyrating', name: 'countbyrating' },
+        { path: '/review/addreview', name: 'addreview', koname: '리뷰 추가' },
+        { path: '/review/getreview', name: 'getreview', koname: '모든 리뷰 조회' },
+        { path: '/review/getsinglervid', name: 'getsinglervid', koname: '리뷰 ID별 조회' },
+        { path: '/review/getsinglervst', name: 'getsinglervst', koname: '점포 ID별 조회' },
+        { path: '/review/reviewbymonth', name: 'reviewbymonth', koname: '개월 달위 조회' },
+        { path: '/review/reviewbydate', name: 'reviewbydate', koname: '기간 내 조회' },
+        { path: '/review/rating', name: 'rating', koname: '평점 별 조회' },
+        { path: '/review/countbyrating', name: 'countbyrating', koname: '종합 별점 현황' },
       ]
     }
   },
@@ -44,8 +45,8 @@ export default {
 
 <style scoped>
 .body {
-  margin: 0;
-  padding: 0;
+  margin: 5%;
+  padding: 5%;
   background-color: #EFEAE6;
   /* 배경 색 설정 */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
