@@ -8,7 +8,7 @@
       <!-- 기능 버튼들 -->
       <div class="feature-buttons">
         <button v-for="url in urlList" :key="url.path" @click="navigate(url.path)" class="feature-button">
-          {{ url.name }}
+          <i class="fas fa-star"></i> {{ url.name }}
         </button>
       </div>
       <!-- 리뷰 정보 출력 구역 -->
@@ -52,7 +52,6 @@ export default {
 }
 
 .main-container {
-  display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
@@ -68,17 +67,20 @@ export default {
 .feature-button {
   margin: 5px;
   padding: 10px 15px;
-  background-color: #f0f0f0;
+  background: linear-gradient(to right, #bd7f4c, #CFBDAE);
   border: none;
+  border-radius: 25px;
+  color: #fff;
   cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
 
 .feature-button:hover {
-  background-color: #e0e0e0;
+  transform: scale(1.05);
 }
 
-.review-content {
-  width: 100%;
-  /* Additional styles for review content */
+.feature-button i {
+  margin-right: 5px;
 }
 </style>
