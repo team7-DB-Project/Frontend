@@ -1,6 +1,7 @@
 <template>
   <header>
     <div class="headline">
+      <img src="../../assets/image.png" style="max-width: 8%; height: auto;">
       <div class="headline-menu">
         <ul>
           <li class="lst">이름</li>

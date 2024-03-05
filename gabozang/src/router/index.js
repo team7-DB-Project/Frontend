@@ -67,8 +67,8 @@ const routes = [
     ]
   },
   {
-    path: '/paymenthistory',
-    name: 'paymenthistory',
+    path: '/payment',
+    name: 'payment',
     component: () => import('@/views/paymenthistory/01PaymentPage.vue')
   },
   {

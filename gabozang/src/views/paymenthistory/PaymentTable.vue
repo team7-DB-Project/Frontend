@@ -1,5 +1,5 @@
 <template>
-    <div class="payment-informations">
+    <div class="board-container">
         <h1>결제 정보</h1>
         <PaymentGrid :data="payments" :columns="columns" @sort-request="handleSortRequest"></PaymentGrid>
     </div>
@@ -87,6 +87,14 @@ export default {
 </script>
 
 <style>
+.board-container {
+    max-width: 85%;
+    margin: auto;
+    padding: 2%;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 .jeoungsan-select-bar {
     border-radius: 0.4em;
     background-color: #F0EAE6;

@@ -2,7 +2,6 @@
   <div id="app">
     <LayoutNavi />
     <LayoutSide />
-   <!-- <LayoutFooter />--> 
   </div>
 </template>
 
@@ -16,7 +15,6 @@ export default {
   components: {
     LayoutNavi,
     LayoutSide
-   // LayoutFooter
   }
 } 
 </script>

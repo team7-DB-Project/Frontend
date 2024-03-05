@@ -21,8 +21,8 @@ export default {
         { path: '/main', name: '메인' },
         { path: '/store', name: '점포' },
         { path: '/employee', name: '직원' },
-        { path: '/review', name: '후기' },
-        { path: '/paymenthistory', name: '정산' }
+        { path: '/payment', name: '정산' },
+        { path: '/review', name: '후기' }
       ]
     }
   }
