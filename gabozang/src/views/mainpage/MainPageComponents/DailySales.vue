@@ -8,7 +8,7 @@
                     <td>{{ formattedTodaySum }}</td>
                 </tr>
                 <tr>
-                    <td class="column01">익일 정산액</td>
+                    <td class="column01">작일 정산액</td>
                     <td>{{ formattedYesterdaySum }}</td>
                 </tr>
             </table>
