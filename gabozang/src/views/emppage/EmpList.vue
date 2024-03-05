@@ -1,9 +1,9 @@
 <template>
     <div class="board-container">
-        <h1>직원 목록 </h1>
+        <div class="header-container"><h1>직원 목록 </h1> <h2>총 직원 수: {{ totalEmployeeCount }}</h2></div>
         <div class="header-container">
             <top-employees></top-employees>
-            <h2>총 직원 수: {{ totalEmployeeCount }}</h2>
+            <bonus-emp></bonus-emp>
             <button @click="addNewEmp" class="add-employee-btn">새 직원 추가</button>
         </div>
         <div>
@@ -30,12 +30,14 @@
 import axios from 'axios';
 import topEmployees from './TopEmp.vue';
 import GridEmp from './GridEmp.vue';
+import BonusEmp from './bonusEmp.vue';
 
 export default {
     name: 'PostListComponent',
     components: {
         topEmployees,
         GridEmp,
+        BonusEmp,
     },
     data() {
         return {
