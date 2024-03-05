@@ -3,7 +3,6 @@
     <div class="total-employee-outerbox">
         <div class="total-employee-innerbox fst">총 직원 수</div>
         <div class="total-employee-innerbox scd">{{ employeeCount }}명</div>
-        <div class="total-employee-innerbox trd" :class="{ 'active': $route.name == 'EmployeesMainPage'}"><button>더보기</button></div>
     </div>
 </template>
 
@@ -12,17 +11,18 @@ import axios from 'axios';
 export default{
     data() {
     return {
-        employeeCount: 0 // 초기 직원 수를 0으로 설정합니다.
+        employeeCount: 0
     }
 },
 created() {
-    this.fetchEmployeeCount(); // 컴포넌트가 생성될 때 직원 수를 가져옵니다.
+    this.fetchEmployeeCount();
 },
 methods: {
     fetchEmployeeCount() {
         axios.get('http://15.164.225.110:8080/employee/count')
             .then(response => {
-                this.employeeCount = response.data; // API 응답으로 받은 데이터를 employeeCount에 저장합니다.
+                console.log(response.data);
+                this.employeeCount = response.data;
             })
             .catch(error => {
                 console.error("There was an error fetching the employee count:", error);
@@ -43,7 +43,7 @@ methods: {
     height: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 

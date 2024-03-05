@@ -60,7 +60,7 @@ export default {
 }
 </script>
 
-<style >
+<style scoped>
 .inside-total-box h3{
     text-align: center;
     font-size: 2em;

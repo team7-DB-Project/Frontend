@@ -1,8 +1,8 @@
 <template>
     <div class="box-frame">
         <div class="outer-box">
-            <div class="table-structure fisrt-row">
-                <div class="middle-box main">
+            <div class="table-structure first-row">
+                <div class="middle-box mainPageText">
                     <h1>메인 페이지</h1>
                 </div>
                 <div class="middle-box totalemployee">
@@ -74,7 +74,7 @@ export default {
     margin-bottom: 1em;
 }
 
-.fisrt-row {
+.first-row {
     display: flex;
     justify-content: space-around;
 }
@@ -89,7 +89,7 @@ export default {
     justify-content: space-around;
 }
 
-.main {
+.mainPageText {
     width: 20%;
     text-align: center;
 }

@@ -12,7 +12,7 @@
                     <td>{{ formattedThisYearSum }}</td>
                 </tr>
                 <tr>
-                    <td class="column-fisrt">작년 매출액</td>
+                    <td class="column-first">작년 매출액</td>
                     <td>{{ formattedLastYearSum }}</td>
                 </tr>
             </table>
@@ -24,8 +24,8 @@
 <script>
 import axios from 'axios';
 export default {
-    data(){
-        return{
+    data() {
+        return {
             totalSum: 0,
             thisYearSum: 0,
             lastYearSum: 0
@@ -38,37 +38,37 @@ export default {
         formattedThisYearSum() {
             return new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(this.thisYearSum);
         },
-        formattedLastYearSum(){
+        formattedLastYearSum() {
             return new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(this.lastYearSum);
         }
     },
-    mounted(){
+    mounted() {
         this.fetchTotalSum();
-        this.fetchYesterdaySum();
+        this.fetchThisYearSum();
         this.fetchLastYearSum();
     },
-    methods:{
-        async fetchTotalSum(){
-            try{
+    methods: {
+        async fetchTotalSum() {
+            try {
                 const response = await axios.get('http://15.164.225.110:8080/paymentHistory/sums');
-                this.todaySum = response.data; // 가정: response.data는 숫자 타입
-            } catch(error){
+                this.totalSum = response.data;
+            } catch (error) {
                 console.error(error);
             }
         },
-        async fetchThisYearSum(){
-            try{
+        async fetchThisYearSum() {
+            try {
                 const response = await axios.get('http://15.164.225.110:8080/paymentHistory/year/sums');
-                this.yesterdaySum = response.data; // 가정: response.data는 숫자 타입
-            } catch(error){
+                this.thisYearSum = response.data;
+            } catch (error) {
                 console.error(error);
             }
         },
-        async fetchLastYearSum(){
-            try{
+        async fetchLastYearSum() {
+            try {
                 const response = await axios.get('http://15.164.225.110:8080/paymentHistory/lastYear/sums');
-                this.yesterdaySum = response.data; // 가정: response.data는 숫자 타입
-            } catch(error){
+                this.lastYearSum = response.data;
+            } catch (error) {
                 console.error(error);
             }
         }
@@ -77,19 +77,21 @@ export default {
 }
 </script>
 
-<style >
-.inside-total-box h3{
+<style>
+.inside-total-box h3 {
     text-align: center;
     font-size: 2em;
 }
-.inside-total-box{
+
+.inside-total-box {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     padding-bottom: 2em;
 }
-.in-box{
+
+.in-box {
     background-color: #F0EAE6;
     width: 100%;
     text-align: right;
@@ -97,10 +99,14 @@ export default {
     padding-top: 1em;
     padding-bottom: 2em;
 }
-.in-box table, th, td{
+
+.in-box table,
+th,
+td {
     font-size: 1.2em;
 }
-.in-box table{
+
+.in-box table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 1em;
