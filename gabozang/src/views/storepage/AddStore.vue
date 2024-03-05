@@ -49,7 +49,10 @@ export default {
     methods: {
         handleFileUpload(event) {
             this.selectedFile = event.target.files[0];
-        },
+        },cancelEdit() {
+        this.isEditing = false;
+        this.$router.push({ name: 'store' });
+    },
         async addStore() {
     var xhr = new XMLHttpRequest();
     var formData = new FormData();
@@ -88,9 +91,7 @@ export default {
     xhr.send(formData);
 }
     },
-    cancelEdit() {
-        this.isEditing = false;
-    },
+    
 }
 
 </script>
