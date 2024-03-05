@@ -1,21 +1,17 @@
 <template>
     <div>
         <input v-model="localFilterKey" placeholder="Search...">
-        <table v-if="filteredData.length">
+        <table v-if="currentPageData.length">
             <thead>
                 <tr>
                     <th v-for="column in columns" :key="column.field" @click="sortBy(column.field)">
                         {{ column.label }}
                         <span class="arrow" :class="sortOrders[column.field] > 0 ? 'asc' : 'desc'"></span>
                     </th>
-
-
-
-
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="store in filteredData" :key="store.id">
+                <tr v-for="store in currentPageData" :key="store.id">
                     <td>{{ store.id }}</td>
                     <td>{{ store.name }}</td>
                     <td>{{ store.location }}</td>
