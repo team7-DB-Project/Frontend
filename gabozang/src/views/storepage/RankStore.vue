@@ -3,7 +3,7 @@
         <h2>올해 점포 매출 순위</h2>
         <div class="top-store-list" v-if="topStore.length > 0">
             <div v-for="(store, index) in topStore" :key="store.employeeId" :class="`store store-${index + 1}`">
-                {{ index + 1 }}위 | {{ store.name }} <br>- 매출액: {{ store.sumSales }}원
+                {{ index + 1 }}위 | {{ store.name }} <br>- 매출액: {{ formatSalaryToKRW(store.sumSales) }}
             </div>
         </div>
         <div v-else>
@@ -23,6 +23,10 @@ export default {
         };
     },
     methods: {
+        formatSalaryToKRW(salary) {
+    return new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(salary);
+},
+
         async fetchTopEmployees() {
             try {
                 const response = await axios.get('http://15.164.225.110:8080/store/sales/rank');
