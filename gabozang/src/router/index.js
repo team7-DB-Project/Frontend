@@ -56,6 +56,7 @@ const routes = [
     name: 'review',
     component: () => import('@/views/reviewpage/01ReviewPage.vue'),
     children: [
+      { path: 'addreview', component: () => import('@/views/reviewpage/addReview.vue') },
       { path: 'getreview', component: () => import('@/views/reviewpage/getReview.vue') },
       { path: 'getsinglervid', component: () => import('@/views/reviewpage/getSingleRvID.vue') },
       { path: 'getsinglervst', component: () => import('@/views/reviewpage/getSingleRvSt.vue') },
