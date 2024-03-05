@@ -20,7 +20,7 @@
                     <td>{{ employee.phoneNumber }}</td>
                     <td>{{ employee.yearsOfService }}</td>
                     <td>{{ employee.employmentType }}</td>
-                    <td>{{ employee.salary }}</td>
+                    <td>{{ formatSalaryToKRW(employee.salary) }}</td>
                     <td>{{ employee.managerId }}</td>
                     <td>{{ employee.createdAt }}</td>
                     <td>{{ employee.updatedAt }}</td>
@@ -89,6 +89,10 @@ export default {
         }
     },
     methods: {
+        formatSalaryToKRW(salary) {
+    return new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(salary);
+},
+
         sortBy(field) {
     this.sortKey = field;
     this.sortOrders[field] = this.sortOrders[field] * -1; // 현재 정렬 순서 반전
