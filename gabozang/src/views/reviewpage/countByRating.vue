@@ -1,5 +1,6 @@
 <template>
   <div class="review-chart">
+    <h2>전체 평점 현황</h2>
     <canvas id="reviewChart"></canvas>
   </div>
 </template>
@@ -78,7 +79,8 @@ export default {
 
 <style scoped>
 .review-chart {
-  max-width: 600px;
+  max-width: 800px;
   margin: auto;
+  padding: 20px;
 }
 </style>
