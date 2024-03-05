@@ -59,7 +59,7 @@ export default {
             this.isEditing = true;
         }, async updateEmployee() {
             try {
-                const response = await axios.post(`http://15.164.225.110:8080/employee/${this.employeeId}`, this.employee);
+                const response = await axios.post(`http://15.164.225.110:8080/employee`, this.employee);
 
                 // 예를 들어, 서버로부터 받은 업데이트된 직원 정보를 로컬 상태에 반영
                 this.employee = response.data;
