@@ -70,32 +70,11 @@ const routes = [
     path: '/payment',
     name: 'payment',
     component: () => import('@/views/paymenthistory/01PaymentPage.vue')
+  }, {
+    path: '/paymenthistory/add',
+    name: 'addpaymenthistory',
+    component: () => import('@/views/paymenthistory/AddPayment.vue')
   },
-  {
-    path: '/users/:id',
-    name: 'user',
-    component: () => import('@/views/user/UserDetailView.vue')
-  }, // user 경로 추가 : end      
-  {
-    path: "/example",
-    component: () => import('@/views/example/ExampleHome.vue'),
-    children: [
-      { path: 'InputForm', component: () => import('@/views/example/01InputForm.vue') },
-      { path: 'ConditionNumber', component: () => import('@/views/example/02ConditionNumber.vue') },
-      { path: 'ToggleColor', component: () => import('@/views/example/03ToggleColor.vue') },
-      { path: 'SortSearch', component: () => import('@/views/example/04SortSearch.vue') },
-      { path: 'CRUD', component: () => import('@/views/example/05CRUD.vue') },
-      { path: 'BasicBinding', component: () => import('@/views/example/Basic01Binding.vue') },
-      { path: 'BasicClick', component: () => import('@/views/example/Basic02Click.vue') },
-      { path: 'BasicMethods', component: () => import('@/views/example/Basic03Methods.vue') }
-    ]
-  },
-  // { 
-  //   path: "/exam/:id",  
-  //   name: 'exam',
-  //   component: () => import('@/views/example/:id.vue')
-  // } ,  
-  // { path : '/example', redirect: '/example/inputForm' },
   {
     path: '/about',
     name: 'about',
