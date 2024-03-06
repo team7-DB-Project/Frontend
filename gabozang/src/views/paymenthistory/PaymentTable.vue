@@ -1,7 +1,8 @@
 <template>
     <div class="board-container">
-        <h1>결제 정보</h1>
+        <h1>결제 정보</h1><button @click="navigateToAddPayment" class="add-new-payment">결제 정보 추가</button>
         <PaymentGrid :data="payments" :columns="columns" @sort-request="handleSortRequest"></PaymentGrid>
+        
     </div>
 </template>
 
@@ -31,6 +32,11 @@ export default {
         await this.fetchData();
     },
     methods: {
+        navigateToAddPayment() {
+            console.log("navigateToAddPAyment is working");
+            this.$router.push({ name: 'addpaymenthistory' });
+        },
+
         handleSortRequest({ sortColumn, sortOrder }) {
             this.payments.sort((a, b) => {
                 let valueA = a[sortColumn];
