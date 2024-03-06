@@ -4,8 +4,8 @@
       <img src="../../assets/image.png" style="max-width: 8%; height: auto;">
       <div class="headline-menu">
         <ul>
-          <li class="lst">이름</li>
-          <li class="lst">직책</li>
+          <li class="lst">박세웅</li>
+          <li class="lst">사장</li>
           <li><button class="btn btn-primary">로그아웃</button></li>
         </ul>
       </div>
