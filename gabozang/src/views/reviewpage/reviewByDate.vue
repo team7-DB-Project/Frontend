@@ -47,38 +47,38 @@ export default {
         };
     },
     methods: {
-    async fetchReviewsByDate() {
-        if (!this.startDate.trim() || !this.endDate.trim()) {
-            this.errorMessage = '시작 날짜와 종료 날짜를 모두 입력해주세요.';
-            return;
-        }
+        async fetchReviewsByDate() {
+            if (!this.startDate.trim() || !this.endDate.trim()) {
+                this.errorMessage = '시작 날짜와 종료 날짜를 모두 입력해주세요.';
+                return;
+            }
 
-        // 입력된 날짜 형식 변환 (예시는 'YY-MM-DD' 입력을 가정함)
-        const formattedStartDate = this.formatDateToISO(this.startDate);
-        const formattedEndDate = this.formatDateToISO(this.endDate);
+            // 입력된 날짜 형식 변환 (예시는 'YY-MM-DD' 입력을 가정함)
+            const formattedStartDate = `${this.formatDateToISO(this.startDate)}`;
+            const formattedEndDate = `${this.formatDateToISO(this.endDate)}`;
 
-        this.reviews = [];
-        this.errorMessage = '';
+            this.reviews = [];
+            this.errorMessage = '';
 
-        try {
-            const url = `http://15.164.225.110:8080/review/reviewByDate?startDate=${formattedStartDate}&endDate=${formattedEndDate}`;
-            const response = await axios.get(url);
-            this.reviews = Array.isArray(response.data) ? response.data : [response.data];
-        } catch (error) {
-            this.errorMessage = '리뷰를 찾을 수 없습니다. 날짜 범위를 확인해주세요.';
-            console.error(error);
-        }
+            try {
+                const url = `http://15.164.225.110:8080/review/reviewByDate?startDate=${formattedStartDate}&endDate=${formattedEndDate}`;
+                const response = await axios.get(url);
+                this.reviews = Array.isArray(response.data) ? response.data : [response.data];
+            } catch (error) {
+                this.errorMessage = '리뷰를 찾을 수 없습니다. 날짜 범위를 확인해주세요.';
+                console.error(error);
+            }
+        },
+        formatDateToISO(dateStr) {
+            // 'YY-MM-DD' 형식의 문자열을 'YYYY-MM-DD'로 변환
+            const parts = dateStr.split('-');
+            const year = parseInt(parts[0], 10) < 70 ? '20' + parts[0] : '19' + parts[0];
+            return `${year}-${parts[1]}-${parts[2]}`;
+        },
+        formatDate(date) {
+            return new Date(date).toLocaleString('ko-KR');
+        },
     },
-    formatDateToISO(dateStr) {
-        // 'YY-MM-DD' 형식의 문자열을 'YYYY-MM-DD'로 변환
-        const parts = dateStr.split('-');
-        const year = parseInt(parts[0], 10) < 70 ? '20' + parts[0] : '19' + parts[0];
-        return `${year}-${parts[1]}-${parts[2]}`;
-    },
-    formatDate(date) {
-        return new Date(date).toLocaleString('ko-KR');
-    },
-},
 
 }
 </script>
